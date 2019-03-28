@@ -1,0 +1,7 @@
+CREAT TABLE 'users' (
+  'user_id' int(11),
+  'first_name' varchar(25),
+  'last_name' varchar(25),
+  'password' varchar(255),
+  PRIMARY KEY ('user_id');
+)
