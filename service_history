@@ -1,0 +1,7 @@
+CREATE TABLE 'service_history'(
+  'user_id' int(11),
+  'vehicle_id' int(25),
+  'service_loc' varchar(25),
+  'service_type' varchar(25),
+  PRIMARY KEY ('service_type');
+)
