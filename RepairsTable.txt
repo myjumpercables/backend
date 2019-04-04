@@ -1,0 +1,6 @@
+CREATE TABLE 'repairs' (
+    'Model' varchar(25),
+    'car_repair' varchar(25),
+    'cost' int(10),
+    'date' varchar(25)
+);
