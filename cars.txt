@@ -2,6 +2,8 @@ CREATE TABLE CARS(
 	Make varchar(20),
 	Model varchar(20),
 	Year int(4),
-	Mileage int
+	Mileage int,
+	Plate varchar(6)
+	PRIMARY_KEY(Plate)
 );
 
