@@ -4,5 +4,6 @@ CREATE TABLE 'repairs' (
     'car_repair' varchar(25),
     'cost' int(10),
     'date' varchar(25),
-    PRIMARY KEY('model')
+    'plate' varchar(7),
+    PRIMARY KEY('plate')
 );
