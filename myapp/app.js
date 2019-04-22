@@ -34,11 +34,11 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(function(req, res) {
+app.use(function(req, res, next) {
   console.log(req.headers);
   console.log(req.cookies);
   console.log(req.body);
-  res.send('OK');
+  next();
 });
 
 
@@ -46,6 +46,7 @@ app.get('/', function(req, res, next) {
   connection.query('SELECT 1 + 1 AS solution', function  (err, rows, fields){
     console.log('The solution is: ',rows[0].solution)
   })
+  res.send(rows[0].solution)
 });
 
 app.post('/', function(req, res, next) {
