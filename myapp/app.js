@@ -8,6 +8,15 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+var mysql = require('mysql')
+var connection = mysql.createConnection({
+  host: '35.232.83.9',
+  user: 'root',
+  password: 'dblab123',
+  database: 'maintenance-tracker'
+})
+
+connection.connect()
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
