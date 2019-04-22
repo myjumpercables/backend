@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
   host: '35.232.83.9',
   user: 'root',
   password: 'dblab123',
-  database: 'maintainance-tracker'
+  database: 'maintTracker'
 })
 
 connection.connect()
