@@ -1,8 +1,8 @@
 CREATE TABLE 'users' (
   'user_id' int(11),
   'username' varchar(25),
-  'company' varchar(255),
+  'company' varchar(25),
   'mechanic'    boolean,
-  'password' varchar(255),
-  PRIMARY KEY ('user_id');
-)
+  'password' varchar(25),
+  PRIMARY KEY ('user_id')
+);
