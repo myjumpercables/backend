@@ -49,6 +49,12 @@ app.get('/', function(req, res, next) {
   })
 });
 
+app.get('/users', function(req, res, next) {
+  res.send('users')
+  })
+});
+
+
 app.post('/', function(req, res, next) {
  // Handle the post for this route
 });
