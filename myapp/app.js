@@ -8,15 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
-var mysql = require('mysql')
-var connection = mysql.createConnection({
-  host: '35.232.83.9',
-  user: 'root',
-  password: 'dblab123',
-  database: 'maintTracker'
-})
 
-connection.connect()
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,10 +35,10 @@ app.use(function(req, res, next) {
 
 
 app.get('/', function(req, res, next) {
-  connection.query('SELECT 1 + 1 AS solution', function  (err, rows, fields){
-    console.log('The solution is: ',rows[0].solution)
-    res.status(200).send({solution : rows[0].solution});
-  })
+  // connection.query('SELECT 1 + 1 AS solution', function  (err, rows, fields){
+  //   console.log('The solution is: ',rows[0].solution)
+  //   res.status(200).send({solution : rows[0].solution});
+  // })
 });
 
 app.post('/', function(req, res, next) {
