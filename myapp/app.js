@@ -34,12 +34,12 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(function(req, res, next) {
-  console.log(req.headers);
-  console.log(req.cookies);
-  console.log(req.body);
-  next();
-});
+// app.use(function(req, res, next) {
+//   console.log(req.headers);
+//   console.log(req.cookies);
+//   console.log(req.body);
+//   next();
+// });
 
 
 app.get('/', function(req, res, next) {
@@ -49,10 +49,7 @@ app.get('/', function(req, res, next) {
   })
 });
 
-app.get('/users', function(req, res, next) {
-  res.send('users')
-  })
-});
+
 
 
 app.post('/', function(req, res, next) {
