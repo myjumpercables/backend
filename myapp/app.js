@@ -35,10 +35,7 @@ app.use(function(req, res, next) {
 
 
 app.get('/', function(req, res, next) {
-  // connection.query('SELECT 1 + 1 AS solution', function  (err, rows, fields){
-  //   console.log('The solution is: ',rows[0].solution)
-  //   res.status(200).send({solution : rows[0].solution});
-  // })
+
 });
 
 app.post('/', function(req, res, next) {

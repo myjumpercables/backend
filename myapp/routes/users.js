@@ -8,9 +8,10 @@ var connection = mysql.createConnection({
   database: 'maintTracker'
 })
 
-connection.connect()
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+  connection.connect()
   res.send('respond with a resource');
 });
 
