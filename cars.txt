@@ -1,10 +1,11 @@
 CREATE TABLE CARS(
-	Make varchar(20),
-	Model varchar(20),
-	Year int(4),
-	Mileage int(6),
-	Plate varchar(6)
-	user_id int(11)
-	PRIMARY_KEY(Plate)
+  'make' varchar(20),
+  'model' varchar(20),
+  'year' int(4),
+  'mileage' int(6),
+  'plate' varchar(6),
+  'user_id' int(11),
+  FOREEIGN KEY('user_id'),
+  PRIMARY KEY('plate')
 );
 
