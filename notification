@@ -1,9 +1,8 @@
 /* This is if implementing notifications, and the databse they can choose much like setting an alarm in clock */
 CREATE TABLE 'notifications' (
   'user_id' int(11),
-  'first_name' varchar(25),
-  'last_name' varchar(25),
   'date' int(6),
-  'service' varchar(25),
+  'service_type' varchar(25),
+  'service_loc' varchar(25),
   FOREIGN KEY ('user_id')
 );
