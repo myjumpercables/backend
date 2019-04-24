@@ -1,7 +1,8 @@
-CREATE TABLE 'repairs' (
-    'car_repair' varchar(25),
-    'cost' int(10),
-    'date' varchar(25),
-    'plate' varchar(7),
-    PRIMARY KEY('plate')
+CREATE TABLE repair (
+  car_repair varchar(25),
+  cost int(10),
+  date int(6),
+  plate varchar(7),
+  FOREIGN KEY(plate) references car(plate),
+  PRIMARY KEY(date)
 );

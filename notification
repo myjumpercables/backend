@@ -1,8 +1,7 @@
-/* This is if implementing notifications, and the databse they can choose much like setting an alarm in clock */
-CREATE TABLE 'notifications' (
-  'user_id' int(11),
-  'date' int(6),
-  'service_type' varchar(25),
-  'service_loc' varchar(25),
-  FOREIGN KEY ('user_id')
+CREATE TABLE notification (
+  user_id int(11),
+  date int(6),
+  service_type varchar(25),
+  service_loc varchar(25),
+  FOREIGN KEY(user_id) references user(user_id)
 );

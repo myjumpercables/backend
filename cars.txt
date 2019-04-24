@@ -1,11 +1,11 @@
-CREATE TABLE CARS(
-  'make' varchar(20),
-  'model' varchar(20),
-  'year' int(4),
-  'mileage' int(6),
-  'plate' varchar(6),
-  'user_id' int(11),
-  FOREEIGN KEY('user_id'),
-  PRIMARY KEY('plate')
+CREATE TABLE car(
+  make varchar(20),
+  model varchar(20),
+  year int(4),
+  mileage int(6),
+  plate varchar(7),
+  user_id int(11),
+  FOREEIGN KEY(user_id) references user(user_id),
+  PRIMARY KEY(plate)
 );
 
