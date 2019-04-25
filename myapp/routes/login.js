@@ -9,13 +9,12 @@ var connection = mysql.createConnection({
   password: 'dblab123',
   database: 'maintTracker'
 })
-
+connection.connect()
 
 /* GET listing. */
 router.post('/', upload.none(), function(req, res, next) {
   console.log(req.body);
   //console.log(req.params.id);
-  connection.connect()
   connection.query('SELECT * FROM users',(err,rows)=> {
     if(err) throw err;
     console.log('Data received form Db:\n');
