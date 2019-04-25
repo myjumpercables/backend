@@ -12,7 +12,9 @@ var router = express.Router();
 // connection.connect()
 
 /* GET listing. */
-router.post('/', upload.none(), function(req, res, next) {
+//put upload.none() before function for multer
+
+router.post('/', function(req, res, next) {
   console.log(req.body);
   //console.log(req.params.id);
 //   connection.query('SELECT * FROM users',(err,rows)=> {
