@@ -36,13 +36,13 @@ app.use(function(req, res, next) {
 });
 
 
-app.get('/', function(req, res, next) {
-
-});
-
-app.post('/', function(req, res, next) {
- // Handle the post for this route
-});
+// app.get('/', function(req, res, next) {
+//
+// });
+//
+// app.post('/', function(req, res, next) {
+//  // Handle the post for this route
+// });
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
