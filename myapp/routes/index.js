@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
   //   console.log('The solution is: ',rows[0].solution)
   //   res.send(200).send({solution : rows[0].solution});
   // })
-  res.send('index');
+  res.render('index');
 });
 
 module.exports = router;
