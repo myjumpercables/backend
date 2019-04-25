@@ -12,9 +12,9 @@ var upload = multer();
 
 
 /* GET listing. */
-router.post('/:id', upload.none(), function(req, res, next) {
+router.post('/', upload.none(), function(req, res, next) {
   console.log(req.body.username);
-  console.log(req.params.id);
+  //console.log(req.params.id);
   //connection.connect()
   //connection.query('SELECT user_id FROM users IF ')
   res.send('Login Stuff');
