@@ -20,8 +20,9 @@ router.post('/', upload.none(), function(req, res, next) {
     if(err) throw err;
     console.log('Data received form Db:\n');
     console.log(rows);
-  res.send(rows);
+
 });
+res.send(rows);
 });
 
 module.exports = router;
