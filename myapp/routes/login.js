@@ -15,12 +15,12 @@ connection.connect()
 router.post('/', upload.none(), function(req, res, next) {
   console.log(req.body);
   //console.log(req.params.id);
-  connection.query('SELECT * FROM users',(err,rows)=> {
-    if(err) throw err;
-    console.log('Data received form Db:\n');
-    console.log(rows);
-
-});
+//   connection.query('SELECT * FROM users',(err,rows)=> {
+//     if(err) throw err;
+//     console.log('Data received form Db:\n');
+//     console.log(rows);
+//
+// });
 res.send(rows);
 });
 
