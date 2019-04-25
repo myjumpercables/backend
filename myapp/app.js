@@ -47,7 +47,7 @@ app.post('/', function(req, res, next) {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
-app.user('/create-account', createAccountRouter);
+app.use('/create-account', createAccountRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
