@@ -29,6 +29,7 @@ router.post('/', upload.array(), function(req, res, next) {
 //       res.send(rows[0]);
 //     }
 // });
+res.send('created account');
 });
 
 module.exports = router;
