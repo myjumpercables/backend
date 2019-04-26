@@ -22,7 +22,7 @@ router.post('/', upload.array(), function(req, res, next) {
   connection.query(`SELECT user_id, type, username FROM user WHERE username = '${req.body.username}' AND password = '${req.body.password}';`,(err,rows)=> {
     if(err) throw err;
     if (rows === [])
-      next(createError(401));
+      res.send.status(401);
     console.log('Data received form Db:\n');
     console.log(rows);
     res.send(rows);
