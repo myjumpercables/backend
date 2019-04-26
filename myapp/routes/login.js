@@ -29,7 +29,7 @@ router.post('/', upload.array(), function(req, res, next) {
     else{
       console.log('Data received form Db:');
       console.log(rows);
-      res.send(rows[0]);
+      res.send(rows);
     }
 });
 
