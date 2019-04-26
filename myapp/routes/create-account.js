@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
 /* GET users listing. */
 router.post('/', function(req, res, next) {
   connection.connect()
-  connection.query(`INSERT INTO user (username,password) VALUES ('${req.body.username}', '${req.body.password}`;));
+  connection.query(`INSERT INTO user (username,password) VALUES ('${req.body.username}', '${req.body.password})`;);
   res.send('Created Account');
 });
 
