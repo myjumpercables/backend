@@ -14,10 +14,12 @@ connection.connect()
 /* GET listing. */
 //put upload.none() before function for multer
 
-router.post('/', function(req, res, next) {
+router.post('/', upload.array(), function(req, res, next) {
+  console.log(req.body);
+  console.log(req.body.username);
   console.log(req.body.password);
   //console.log(req.params.id);
-  connection.query('SELECT * FROM user',(err,rows)=> {
+  connection.query('SELECT user_id FROM user IF',(err,rows)=> {
     if(err) throw err;
     console.log('Data received form Db:\n');
     console.log(rows);
