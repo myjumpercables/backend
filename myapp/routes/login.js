@@ -19,7 +19,7 @@ router.post('/', upload.array(), function(req, res, next) {
   console.log(req.body.username);
   console.log(req.body.password);
   //console.log(req.params.id);
-  connection.query('SELECT user_id FROM user IF',(err,rows)=> {
+  connection.query('SELECT user_id FROM user',(err,rows)=> {
     if(err) throw err;
     console.log('Data received form Db:\n');
     console.log(rows);
