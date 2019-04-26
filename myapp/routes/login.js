@@ -16,8 +16,8 @@ connection.connect()
 
 router.post('/', function(req, res, next) {
   console.log(req.body);
-  console.log(req.params.id);
-  connection.query('SELECT * FROM users',(err,rows)=> {
+  //console.log(req.params.id);
+  connection.query('SELECT * FROM user',(err,rows)=> {
     if(err) throw err;
     console.log('Data received form Db:\n');
     console.log(rows);
