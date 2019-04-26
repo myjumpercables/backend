@@ -23,7 +23,7 @@ router.post('/', upload.array(), function(req, res, next) {
     if(err) throw err;
     if (rows.length === 0) {
         res.status(401);
-        res.render('error');
+        res.send();
         console.log('ERROR');
         }
     console.log('Data received form Db:');
