@@ -15,7 +15,7 @@ connection.connect()
 //put upload.none() before function for multer
 
 router.post('/', function(req, res, next) {
-  console.log(req.body);
+  console.log(req.body.password);
   //console.log(req.params.id);
   connection.query('SELECT * FROM user',(err,rows)=> {
     if(err) throw err;
