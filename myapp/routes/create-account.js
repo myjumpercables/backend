@@ -14,7 +14,7 @@ var connection = mysql.createConnection({
 /* GET users listing. */
 router.post('/', upload.array(), function(req, res, next) {
   connection.connect()
-  connection.query(`INSERT INTO user (user_id,username,password) VALUES ('${req.body.username}', '${req.body.password}',${req.body.id});`,(err,rows) => {
+  connection.query(`INSERT INTO user (user_id,username,password) VALUES (${req.body.id},'${req.body.username}', '${req.body.password}');`,(err,rows) => {
     if(err) throw err;
   });
   res.send('Created Account');
