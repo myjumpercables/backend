@@ -14,7 +14,7 @@ var connection = mysql.createConnection({
 /* GET users listing. */
 router.post('/', upload.array(), function(req, res, next) {
   connection.connect()
-  connection.query(`INSERT INTO user (user_id,username,password) VALUES ('${req.body.username}', '${req.body.password}');`,(err,rows) => {
+  connection.query(`INSERT INTO user (username,password) VALUES ('${req.body.username}', '${req.body.password}');`,(err,rows) => {
     if(err) throw err;
   });
 //   connection.query(`SELECT user_id, type, username FROM user WHERE username = '${req.body.username}' AND password = '${req.body.password}';`,(err,rows)=> {
