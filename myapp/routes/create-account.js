@@ -14,8 +14,7 @@ router.post('/', function(req, res, next) {
   connection.connect()
   connection.query(`INSERT INTO user (username,password) VALUES ('${req.body.username}', '${req.body.password}');`,(err,rows) => {
     if(err) throw err;
-  }
-});
+  });
   res.send('Created Account');
 });
 
