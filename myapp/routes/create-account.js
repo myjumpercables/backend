@@ -15,8 +15,9 @@ var connection = mysql.createConnection({
 router.post('/', upload.array(), function(req, res, next) {
   connection.connect()
   connnection.query(`SELECT username FROM user WHERE username = '${req.body.username}';`,(err,rows)=>{
-    if(req.body.username === rows.username){
-      res.send('Username Already Exists')
+    if(rows.length ===0){
+      next(createError(401));
+      res.send('Username Already Exists');
     };
   });
   connection.query(`INSERT INTO user (username,password) VALUES ('${req.body.username}', '${req.body.password}');`,(err,rows) => {
