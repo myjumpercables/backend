@@ -14,7 +14,7 @@ var connection = mysql.createConnection({
 /* GET users listing. */
 router.post('/', upload.array(), function(req, res, next) {
   connection.connect()
-  connnection.query(`SELECT username FROM user WHERE username = '${req.body.username}';`,(err,rows)=>{
+  connection.query(`SELECT username FROM user WHERE username = '${req.body.username}';`,(err,rows)=>{
     if(err) throw err;
     if(rows.length != 0){
       next(createError(401));
