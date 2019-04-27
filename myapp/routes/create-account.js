@@ -23,7 +23,7 @@ router.post('/', upload.array(), function(req, res, next) {
       next(createError(401));
     else {
 
-      database.query(`INSERT INTO user (username,password) VALUES ('${req.body.username}', '${req.body.password}','${req.body.type}','${req.body.email}';`)
+      database.query(`INSERT INTO user (username,password,type,email) VALUES ('${req.body.username}', '${req.body.password}','${req.body.type}','${req.body.email}';`)
       .then(database.query(`SELECT user_id, type, username FROM user WHERE username = '${req.body.username}';`)
       .then(rows =>{
         res.send(rows);
