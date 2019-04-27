@@ -18,7 +18,7 @@ var database = new Database();
 /* GET users listing. */
 router.post('/', upload.array(), function(req, res, next) {
   connection.connect();
-  const users = await database.query(`SELECT username FROM user WHERE username = '${req.body.username}';`)
+  const users = database.query(`SELECT username FROM user WHERE username = '${req.body.username}';`)
   res.send(users);
   this.errorFlag = false;
   // connection.query(`SELECT username FROM user WHERE username = '${req.body.username}';`,(err,rows)=>{
