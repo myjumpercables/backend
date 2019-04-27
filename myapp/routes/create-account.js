@@ -17,10 +17,8 @@ var database = new Database();
 //NEED TO CHECK IF USERNAME IS ALREADY IN TABLE, IF YES RETURN ERROR CODE TO DO NEW USERNAME, IF NO CONTINUE ADDING.
 /* GET users listing. */
 router.post('/', upload.array(), function(req, res, next) {
-  connection.connect();
   const users = database.query(`SELECT username FROM user WHERE username = '${req.body.username}';`)
   res.send(users);
-  this.errorFlag = false;
   // connection.query(`SELECT username FROM user WHERE username = '${req.body.username}';`,(err,rows)=>{
   //   if(err) throw err;
   //   // if(rows.length != 0){

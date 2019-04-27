@@ -7,7 +7,6 @@ class Database {
           password: 'dblab123',
           database: 'maintTracker'
         });
-        this.connection.connect();
     }
     query( sql, args ) {
         return new Promise( ( resolve, reject ) => {
