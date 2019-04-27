@@ -4,6 +4,7 @@ var multer = require('multer');
 var upload = multer();
 var createError = require('http-errors');
 var mysql = require('mysql')
+import Database from '../database'
 var connection = mysql.createConnection({
   host: '35.232.83.9',
   user: 'root',
@@ -11,6 +12,8 @@ var connection = mysql.createConnection({
   database: 'maintTracker'
 })
 connection.connect()
+
+var database = new Database();
 
 /* GET listing. */
 //put upload.none() before function for multer
