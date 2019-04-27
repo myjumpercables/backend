@@ -22,10 +22,8 @@ router.post('/', upload.array(), function(req, res, next) {
     if(rows.length != 0)
       next(createError(401));
     else {
-      database.query(`INSERT INTO user (username,password) VALUES ('${req.body.username}', '${req.body.password}');`
-
+      database.query(`INSERT INTO user (username,password) VALUES ('${req.body.username}', '${req.body.password}');`)
     }
-
     console.log(rows);
   }) .finally({database.close()});
   // connection.query(`SELECT username FROM user WHERE username = '${req.body.username}';`,(err,rows)=>{
