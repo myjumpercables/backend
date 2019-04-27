@@ -4,7 +4,7 @@ var multer = require('multer');
 var upload = multer();
 var createError = require('http-errors');
 var mysql = require('mysql')
-var Database require('../database')
+var Database = require('../database')
 var connection = mysql.createConnection({
   host: '35.232.83.9',
   user: 'root',
@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
 })
 connection.connect()
 
-var database = new Database();
+//var database = new Database();
 
 /* GET listing. */
 //put upload.none() before function for multer

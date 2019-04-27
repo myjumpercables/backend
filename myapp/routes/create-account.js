@@ -4,7 +4,7 @@ var multer = require('multer');
 var upload = multer();
 var createError = require('http-errors');
 var mysql = require('mysql')
-import Database from '../database'
+var Database = require('../database')
 // var connection = mysql.createConnection({
 //   host: '35.232.83.9',
 //   user: 'root',
