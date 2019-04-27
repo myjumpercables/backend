@@ -28,6 +28,10 @@ router.post('/', upload.array(), function(req, res, next) {
       .then(rows =>{
         res.send(rows);
       }))
+      .catch(err {
+        console.log(err)
+        res.send(err)
+      })
     }
   }).catch(err =>{
     console.log(err);
