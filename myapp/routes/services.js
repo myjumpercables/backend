@@ -15,8 +15,8 @@ var database = new Database();
 //In SERVICES ROUTER
 router.post('/add/:id', upload.array(), function(req, res, next){
   database.query(
-    `INSERT INTO service_history_table(subject, description, date, car_id)
-    VALUES ('${req.body.subject}', '${req.body.service_desc}', '${req.body.date}', '${req.params.id}');`
+    `INSERT INTO service_history_table(service_type, description, date, car_id)
+    VALUES ('${req.body.service_type}', '${req.body.service_desc}', '${req.body.date}', '${req.params.car_id}');`
   ).then(res.send("OK"))
   .catch(err =>{
     console.log(err);
