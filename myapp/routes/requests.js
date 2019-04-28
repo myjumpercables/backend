@@ -1,5 +1,5 @@
 var express = require('express');
-var router = express.Router();
+var router = express.Router()
 var Database = require('../database.js')
 var multer = require('multer');
 var upload = multer();
@@ -13,8 +13,8 @@ var upload = multer();
 var database = new Database();
 
 //In REQUESTS ROUTER
-router.post('/add/:userId/', upload.array(), function(req, res, next){
-  datebase.query(
+router.post('/add/:userId', upload.array(), function(req, res, next){
+  database.query(
     `INSERT INTO request (userId, state, companyId)
     VALUES ('${req.params.userId}', 'NULL', '${req.body.companyId}');`
   )
@@ -25,7 +25,7 @@ router.post('/add/:userId/', upload.array(), function(req, res, next){
   })
 });
 
-router.get('/getRequests/:userId/', upload.array(), function(req, res, next){
+router.get('/getRequests/:userId', upload.array(), function(req, res, next){
   database.query(
     `SELECT companyId, username FROM request JOIN user
      ON request.companyId = user.userId
@@ -38,7 +38,7 @@ router.get('/getRequests/:userId/', upload.array(), function(req, res, next){
   })
 });
 
-router.post('/update/:userId/', upload.array(), function(req, res, next){
+router.post('/update/:userId', upload.array(), function(req, res, next){
   database.query(
     `UPDATE requests
      SET state = true
@@ -53,7 +53,7 @@ router.post('/update/:userId/', upload.array(), function(req, res, next){
   })
 });
 
-router.post('/delete/:userId/', upload.array(), function(req, res, next){
+router.post('/delete/:userId', upload.array(), function(req, res, next){
   database.query(
     `DELETE FROM requests
      WHERE userId = ${req.params.userId}
