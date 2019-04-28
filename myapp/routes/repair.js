@@ -13,7 +13,7 @@ var upload = multer();
 var database = new Database();
 
 // In REPAIR ROUTER
-router.post('/add/:id', upload.array(), function(req, res, next){
+router.post('/add/:service_id', upload.array(), function(req, res, next){
   datebase.query(
     `INSERT INTO repair_table(car_repair, description, date, service_id)
     VALUES ('${req.body.car_repair}', '${req.body.repair_desc}', '${req.body.date}', '${req.params.service_id}');`
