@@ -23,7 +23,7 @@ router.post('/add/:userId/', upload.array(), function(req, res, next){
     console.log(err);
     res.status(500).send();
   })
-})
+});
 
 router.get('/getRequests/:userId/', upload.array(), function(req, res, next){
   database.query(
@@ -36,7 +36,7 @@ router.get('/getRequests/:userId/', upload.array(), function(req, res, next){
     console.log(err);
     res.status(500).send();
   })
-})
+});
 
 router.post('/update/:userId/', upload.array(), function(req, res, next){
   database.query(
@@ -51,7 +51,7 @@ router.post('/update/:userId/', upload.array(), function(req, res, next){
     console.log(err);
     res.status(500).send();
   })
-})
+});
 
 router.post('/delete/:userId/', upload.array(), function(req, res, next){
   database.query(
