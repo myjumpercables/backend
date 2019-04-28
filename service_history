@@ -1,11 +1,8 @@
 CREATE TABLE service_history(
   user_id int(11),
-  plate varchar(7),
-  service_loc varchar(25),
+  car_id int(11),
   service_type text,
   service_id int(11),
-  date int(6)
-  FOREIGN KEY(service_loc) references company(service_loc),
-  FOREIGN KEY(date) references repair(date),
-  PRIMARY KEY(plate)
+  date int(6),
+  PRIMARY KEY(service_id)
 );

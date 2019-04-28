@@ -3,5 +3,7 @@ CREATE TABLE user (
   username varchar(25),
   type varchar(25),
   password varchar(25),
+  location varchar(25),
+  phone int(10),
   PRIMARY KEY(user_id)
 );
