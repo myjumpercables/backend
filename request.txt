@@ -2,5 +2,6 @@ CREATE TABLE request (
   user_id int(11),
   state boolean,
   company_id int(11),
+  request_id int(11),
   FOREIGN KEY(user_id) references user(user_id)
 );
