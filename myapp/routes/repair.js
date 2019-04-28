@@ -15,8 +15,8 @@ var database = new Database();
 // In REPAIR ROUTER
 router.post('/add/:id', upload.array(), function(req, res, next){
   datebase.query(
-    `INSERT INTO services(subject, text, date, car_id)
-    VALUES ('${req.body.subject}', '${req.body.text}', '${req.body.date}', '${req.params.id}');`
+    `INSERT INTO (car_repair, description, date, car_id)
+    VALUES ('${req.body.car_repair}', '${req.body.repair_desc}', '${req.body.date}', '${req.params.id}');`
   )
   .then(res.send("OK"))
   .catch(err =>{

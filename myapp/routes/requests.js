@@ -15,7 +15,7 @@ var database = new Database();
 //In REQUESTS ROUTER
 router.post('/add/:userId', upload.array(), function(req, res, next){
   database.query(
-    `INSERT INTO request (userId, state, companyId)
+    `INSERT INTO requests_table (userId, state, companyId)
     VALUES ('${req.params.userId}', 'NULL', '${req.body.companyId}');`
   )
   .then(res.send("OK"))
@@ -27,7 +27,7 @@ router.post('/add/:userId', upload.array(), function(req, res, next){
 
 router.get('/getRequests/:userId', upload.array(), function(req, res, next){
   database.query(
-    `SELECT companyId, username FROM request JOIN user
+    `SELECT companyId, username FROM requests_table JOIN user
      ON request.companyId = user.userId
      WHERE request.userId = ${req.params.userId} AND state = IS NULL;`
   )
@@ -40,7 +40,7 @@ router.get('/getRequests/:userId', upload.array(), function(req, res, next){
 
 router.post('/update/:userId', upload.array(), function(req, res, next){
   database.query(
-    `UPDATE requests
+    `UPDATE requests_table
      SET state = true
      WHERE userId = ${req.params.userId}
      AND companyId = ${req.body.companyId}
@@ -55,7 +55,7 @@ router.post('/update/:userId', upload.array(), function(req, res, next){
 
 router.post('/delete/:userId', upload.array(), function(req, res, next){
   database.query(
-    `DELETE FROM requests
+    `DELETE FROM requests_table
      WHERE userId = ${req.params.userId}
      AND companyId = ${req.body.companyId}
      `

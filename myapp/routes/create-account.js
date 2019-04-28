@@ -17,14 +17,14 @@ var database = new Database();
 //NEED TO CHECK IF USERNAME IS ALREADY IN TABLE, IF YES RETURN ERROR CODE TO DO NEW USERNAME, IF NO CONTINUE ADDING.
 /* GET users listing. */
 router.post('/', upload.array(), function(req, res, next) {
-  database.query(`SELECT username FROM user WHERE username = '${req.body.username}';`)
+  database.query(`SELECT username FROM user_table WHERE username = '${req.body.username}';`)
   .then( rows => {
     if(rows.length != 0)
       next(createError(401));
     else {
 
-      database.query(`INSERT INTO user (username,password,type,email) VALUES ('${req.body.username}', '${req.body.password}','${req.body.type}','${req.body.email}');`)
-      .then(database.query(`SELECT user_id, type, username FROM user WHERE username = '${req.body.username}';`)
+      database.query(`INSERT INTO user_table (username,password,type,email) VALUES ('${req.body.username}', '${req.body.password}','${req.body.type}','${req.body.email}');`)
+      .then(database.query(`SELECT user_id, type, username FROM user_table WHERE username = '${req.body.username}';`)
       .then(rows =>{
         res.send(rows);
       }))
