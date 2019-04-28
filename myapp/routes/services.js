@@ -14,7 +14,7 @@ var database = new Database();
 
 //In SERVICES ROUTER
 router.post('/add/:id', upload.array(), function(req, res, next){
-  datebase.query(
+  database.query(
     `INSERT INTO services(subject, text, date, car_id)
     VALUES ('${req.body.subject}', '${req.body.text}', '${req.body.date}', '${req.params.id}');`
   ).then(res.send("OK"))
