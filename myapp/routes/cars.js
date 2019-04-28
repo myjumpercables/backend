@@ -9,7 +9,7 @@ router.get('/', upload.array(), function(req, res, next) {
   //connection.connect()
   //get all cars
   database.query(
-    `SELECT car_id, make, model, year from cars_table WHERE user_id = ${req.body.id};`
+    `SELECT car_id, make, model, year from car_table WHERE user_id = ${req.body.id};`
   ).then((rows, err) => {
     if (err) throw err;
     return rows.map((carRow) => {
@@ -42,7 +42,7 @@ router.get('/', upload.array(), function(req, res, next) {
 //add car
 router.post('/add/:id', upload.array(), function(req, res,next){
   database.query(
-    `INSERT INTO cars_table (make, model, year, user_id)
+    `INSERT INTO car_table (make, model, year, user_id)
   VALUES ('${req.body.make}', '${req.body.model}', '${req.body.year}', '${req.params.id}');`)
   .then(res.send("OK"))
   .catch(err =>{
