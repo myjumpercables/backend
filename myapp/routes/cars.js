@@ -41,7 +41,6 @@ router.get('/', upload.array(), function(req, res, next) {
 //ADD CAR
 //add car
 router.post('/add/:id', upload.array(), function(req, res,next){
-  console.log(body);
   database.query(
     `INSERT INTO cars_table (make, model, year, user_id)
   VALUES ('${req.body.make}', '${req.body.model}', '${req.body.year}', '${req.params.id}');`)
