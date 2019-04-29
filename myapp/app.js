@@ -59,7 +59,7 @@ app.use('/requests',requestsRouter);
 app.use('/repair',repairRouter);
 app.use('/services',servicesRouter);
 app.use('/cars',carsRouter);
-app.use('/manage-account', manageAccount);
+app.use('/manage-account', manageAccountRouter);
 app.use('/get-user-requests', getUserRequestsRouter);
 
 // catch 404 and forward to error handler
