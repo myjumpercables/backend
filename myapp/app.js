@@ -58,7 +58,7 @@ app.use('/create-account', createAccountRouter);
 app.use('/requests',requestsRouter);
 app.use('/repair',repairRouter);
 app.use('/services',servicesRouter);
-app.use('/cars',carsRouter);
+app.use('/get-cars',carsRouter);
 app.use('/manage-account', manageAccountRouter);
 app.use('/get-user-requests', getUserRequestsRouter);
 
