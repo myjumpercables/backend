@@ -5,7 +5,7 @@ var multer = require('multer');
 var upload = multer();
 var database = new Database();
 /* GET users listing. */
-router.get('/', upload.array(), function(req, res, next) {
+router.get('/get-cars', upload.array(), function(req, res, next) {
   //connection.connect()
   //get all cars
   database.query(
