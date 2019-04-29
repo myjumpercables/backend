@@ -23,7 +23,7 @@ router.post('/', upload.array(), function(req, res, next) {
   console.log(req.body.username);
   console.log(req.body.password);
   //console.log(req.params.id);
-  connection.query(`SELECT user_id, type, username FROM user_table WHERE username = '${req.body.username}' AND password = '${req.body.password}';`,(err,rows)=> {
+  connection.query(`SELECT user_id as id, type, username FROM user_table WHERE username = '${req.body.username}' AND password = '${req.body.password}';`,(err,rows)=> {
     if(err) throw err;
     if (rows.length === 0) {
         next(createError(401));
