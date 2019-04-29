@@ -15,7 +15,7 @@ router.get('/', upload.array(), function(req, res, next) {
     return rows.map((carRow) => {
       //add services arrray to carRow
       carRow['services'] = database.query(
-        `SELECT service_id, subject, text, date FROM repair_table WHERE car_id = '${carRow.car_id}';`
+        `SELECT service_id, service_type, service_desc, date FROM service_history_table WHERE car_id = '${carRow.car_id}';`
       ).then((serviceRows, err) => {
         if (err) throw err;
         return serviceRows.map((serviceRow)=>{
