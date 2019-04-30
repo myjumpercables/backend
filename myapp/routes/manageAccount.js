@@ -16,7 +16,7 @@ var database = new Database();
 router.post('/:user_id', upload.array(), function(req, res, next) {
   database.query(
     `SELECT * FROM user_table WHERE user_id = '${req.params.user_id}';`
-  ).then((var,err,rows) => {
+  ).then((err,rows) => {
     if(rows.length == 0){
       console.log({error: "Account Doesn't Exist"});
       res.sendStatus(500);
