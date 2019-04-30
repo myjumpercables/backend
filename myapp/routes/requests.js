@@ -67,7 +67,7 @@ router.post('/delete/:user_id', upload.array(), function(req, res, next){
   })
 });
 
-router.get('/search', upload.array(), function(req, res, next){
+router.post('/search', upload.array(), function(req, res, next){
   database.query( 
     `SELECT username, user_id, email from user
      WHERE ${(req.body.queryType) ? `username LIKE '%${req.body.query}%'` : `user_id = ${req.body.query}`}
