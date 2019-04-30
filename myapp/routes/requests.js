@@ -67,5 +67,17 @@ router.post('/delete/:user_id', upload.array(), function(req, res, next){
   })
 });
 
+router.get('/search/:query', upload.array(), function(req, res, next){
+  database.query( 
+    `SELECT username, user_id, email from user
+     WHERE ${(req.body.queryType) ? `username LIKE '%${req.params.query}%'` : `user_id = ${req.params.query}`}
+     AND type = 'user';
+    `
+  ).then((rows, err) =>{
+    res.send(rows)
+  }).catch(err =>{
+    res.sendStatus('400');
+  })
+})
 
 module.exports = router;
