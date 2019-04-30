@@ -18,7 +18,10 @@ router.post('/add/:user_id', upload.array(), function(req, res, next){
     `INSERT INTO request_table (user_id, state, company_id)
     VALUES ('${req.params.user_id}', ${req.body.state}, '${req.body.company_id}');`
   )
-  .then(res.send("OK"))
+  .then((resp, err) =>{
+    if(err) throw err;
+    res.sendStatus(200);
+  })
   .catch(err =>{
     console.log(err);
     res.status(500).send();
