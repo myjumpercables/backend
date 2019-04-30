@@ -17,6 +17,7 @@ router.get('/:id', upload.array(), function(req, res, next) {
       carRow['services'] = database.query(
         `SELECT service_id, service_type, service_desc, date FROM service_history_table WHERE car_id = '${carRow.car_id}';`
       ).then((serviceRows, err) => {
+        console.log(carRow.car_id);
         if (err) throw err;
         return serviceRows.map((serviceRow)=>{
           serviceRow['repairs'] = database.query(
