@@ -5,11 +5,11 @@ var multer = require('multer');
 var upload = multer();
 var database = new Database();
 /* GET users listing. */
-router.get('/', upload.array(), function(req, res, next) {
+router.get('/:id', upload.array(), function(req, res, next) {
   //connection.connect()
   //get all cars
   database.query(
-    `SELECT car_id, make, model, year from car_table WHERE user_id = '${req.body.id}';`
+    `SELECT car_id, make, model, year from car_table WHERE user_id = '${req.params.id}';`
   ).then((rows, err) => {
     if (err) throw err;
     return rows.map((carRow) => {

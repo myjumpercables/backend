@@ -12,7 +12,7 @@ var upload = multer();
 // })
 var database = new Database();
 
-router.get('/getUsers/:company_id', upload.array(), function(req, res, next){
+router.get('/:company_id', upload.array(), function(req, res, next){
     database.query(
       `SELECT userId, username FROM request_table JOIN user_table
        ON request.user_id = user.user_id
