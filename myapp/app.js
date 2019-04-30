@@ -15,6 +15,7 @@ var servicesRouter = require('./routes/services');
 var carsRouter = require('./routes/cars');
 var manageAccountRouter = require('./routes/manageAccount');
 var getUserRequestsRouter = require('./routes/getUserRequests');
+var requestsRouter = require('./routes/requests');
 
 var app = express();
 
@@ -61,6 +62,7 @@ app.use('/services',servicesRouter);
 app.use('/cars',carsRouter);
 app.use('/manage-account', manageAccountRouter);
 app.use('/get-user-requests', getUserRequestsRouter);
+app.use('/requests', requestsRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
