@@ -29,7 +29,8 @@ router.post('/:user_id', upload.array(), function(req, res, next) {
           password = ${req.body.password},
         WHERE user_id = ${req.params.user_id};`
       )
-    } res.send(rows);
+      res.send(rows);
+    }
   })
 });
 
