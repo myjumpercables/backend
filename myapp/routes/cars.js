@@ -14,7 +14,7 @@ var getServices = async (id) => {
     `
   ).then(serviceRows =>{
     return serviceRows;
-  }) 
+  })
 }
 router.get('/:id', upload.array(), function(req, res, next) {
   //connection.connect()
@@ -75,7 +75,7 @@ router.get('/:id', upload.array(), function(req, res, next) {
 // });
 
   database.query(
-`SELECT car_id, make, model, year from car_table WHERE user_id = ${req.body.id};`)
+`SELECT car_id, make, model, year from car_table WHERE user_id = ${req.params.id};`)
   .then(carRows =>{
     return carRows.map(carRow =>{
       carRow['services'] = getServices(carRow.car_id)
