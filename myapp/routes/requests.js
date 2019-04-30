@@ -34,7 +34,7 @@ router.post('/add/:user_id', upload.array(), function(req, res, next){
 
 router.get('/getRequests/:user_id', upload.array(), function(req, res, next){
   database.query(
-    `SELECT company_id, username FROM request_table JOIN user_table
+    `SELECT company_id, username, request_id FROM request_table JOIN user_table
      ON request_table.company_id = user_table.user_id
      WHERE request_table.user_id = ${req.params.user_id} AND state IS NULL;`
   )
