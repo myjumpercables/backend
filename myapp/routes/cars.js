@@ -41,10 +41,10 @@ router.get('/:id', upload.array(), function(req, res, next) {
 // });
 
 database.query(
-`SELECT car_id, make, model, year from car_table WHERE user_id = ${req.params.id};`
+`SELECT car_id, make, model, year FROM car_table WHERE user_id = ${req.params.id};`
 )
 .then(carRows => {
-  return Promise.all(carRows.map(carRow => {
+  Promise.all(carRows.map(carRow => {
     database.query(`SELECT service_id, service_type, service_desc, date FROM service_history_table WHERE car_id = '${carRow.car_id}';`)
       .then(serviceRows => {
         carRow['services'] = serviceRows;
@@ -52,9 +52,12 @@ database.query(
       })
       .catch(err =>{
         console.log(err);
+        return "error"
         res.sendStatus(500);
       })
-    }))
+    })).then({
+
+    })
   }).then(result => {
     res.send(result);
   })
@@ -72,7 +75,7 @@ router.post('/add/:id', upload.array(), function(req, res,next){
     console.log(err);
     res.status(500).send();
   })
-})
+});
 
 
 
