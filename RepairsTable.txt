@@ -1,9 +1,10 @@
-CREATE TABLE repair (
+CREATE TABLE repair_table (
   car_repair varchar(25),
+  repair_desc text,
   cost int(10),
   date date,
   repair_id int(11),
   service_id int(11),
-  FOREIGN KEY(service_id) references service_history(service_id),
+  FOREIGN KEY(service_id) references service_history_table(service_id),
   PRIMARY KEY(repair_id)
 );

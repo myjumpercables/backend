@@ -1,8 +1,10 @@
-CREATE TABLE service_history(
+CREATE TABLE service_history_table (
   user_id int(11),
   car_id int(11),
   service_type text,
+  service_desc text,
   service_id int(11),
-  date int(6),
+  date date,
+  FOREIGN KEY(car_id) references car_table(car_id),
   PRIMARY KEY(service_id)
 );

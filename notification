@@ -1,7 +1,7 @@
-CREATE TABLE notification (
+CREATE TABLE notification_table (
   user_id int(11),
   date date,
   service_type varchar(25),
-  service_loc varchar(25),
-  FOREIGN KEY(user_id) references user(user_id)
+  location varchar(25),
+  FOREIGN KEY(user_id) references user_table(user_id)
 );
