@@ -77,12 +77,15 @@ router.get('/:id', upload.array(), function(req, res, next) {
   database.query(
 `SELECT car_id, make, model, year from car_table WHERE user_id = ${req.params.id};`)
   .then(carRows =>{
-    let arr = carRows.map((carRow) => {
-      database.query(` 
+    carRows.map((carRow) => {
+      let newRow = await database.query
+      (
+      ` 
       SELECT service_id, service_type, service_desc, date
       FROM service_history_table
       WHERE car_id = ${carRow.car_id}
-      `).then((serviceRows, err) => {
+      `
+      ).then((serviceRows, err) => {
         if(err) throw err;
         carRow['services'] = serviceRows;
         console.log("IN SERVICES");
@@ -92,7 +95,7 @@ router.get('/:id', upload.array(), function(req, res, next) {
       .catch(err =>{
         console.log(err);
       })
-      return carRow;
+      return newRow;
     })
     return arr;
   }).then(result =>{
