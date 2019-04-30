@@ -15,7 +15,7 @@ var database = new Database();
 router.get('/:company_id', upload.array(), function(req, res, next){
     database.query(
       `SELECT user_id, username FROM request_table JOIN user_table
-       ON request.user_id = user.user_id
+       ON request_table.user_id = user_table.user_id
        WHERE request.company_id = ${req.params.company_id} AND state = NULL;`
     )
     .then(rows => {
