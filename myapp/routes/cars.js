@@ -86,11 +86,14 @@ database.query(
   })
 
   cars.forEach((car, index, arr) => {
-    car['services'].then((service)=>{
+    car['services']
+    .then((service)=>{
       arr[index].services = service;
     })
   });
-  
+  return cars;
+})
+.then(cars => {
   res.send(cars);
 })
 .catch(err =>{
