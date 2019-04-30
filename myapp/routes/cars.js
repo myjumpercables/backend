@@ -110,13 +110,13 @@ database.query(
   `SELECT car_id, make, model, year from car_table WHERE user_id = ${req.params.id};`
 ).then((cars, err) =>{
   if (err) throw err;
-  cars = cars.map((car, i) =>{
+  let newCars = cars.map((car, i) =>{
     car = new getServices(car);
     car = Promise.resolve(car.services())
     return car;
   })
 
-  return cars
+  return Promise.all(newCars).then((newList) => {return newList})
 })
 .then(cars => {
   res.send(cars);
