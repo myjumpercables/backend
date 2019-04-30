@@ -104,7 +104,7 @@ router.post('/search', upload.array(), function(req, res, next){
   ).then((users, err) =>{
     if (err) throw err;
     let usersList = users.map((user, i) =>{
-      user = new getServices(user);
+      user = new getCars(user);
       user = Promise.resolve(user.cars())
       return car;
     })
