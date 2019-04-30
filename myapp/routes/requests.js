@@ -101,7 +101,7 @@ router.post('/search', upload.array(), function(req, res, next){
     FROM user_table LEFT JOIN request_table
     ON 
       user_table.user_id = request_table.user_id
-    WHERE ${(req.body.queryType) ? `username LIKE '%${req.body.query}%'` : `user_id = ${req.body.query}`}
+    WHERE ${(req.body.queryType) ? `username LIKE '%${req.body.query}%'` : `user_table.user_id = ${req.body.query}`}
     AND type = 'user';
     `
   ).then((users, err) =>{
