@@ -97,7 +97,7 @@ function getCars(user){
 
 router.post('/search', upload.array(), function(req, res, next){
   database.query( 
-    `SELECT username, user_id, email, phone, location from user_table
+    `SELECT username, user_id, phone, location from user_table
      WHERE ${(req.body.queryType) ? `username LIKE '%${req.body.query}%'` : `user_id = ${req.body.query}`}
      AND type = 'user';
     `
