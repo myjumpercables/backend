@@ -90,6 +90,8 @@ database.query(
       console.log(car);
     })
   });
+
+  res.send(cars);
 })
 
 //   database.query(
