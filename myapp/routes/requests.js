@@ -67,16 +67,54 @@ router.post('/delete/:user_id', upload.array(), function(req, res, next){
   })
 });
 
+function getCars(user){
+  async function Cars() {
+    return database.query(
+    `SELECT car_id, make, model, year 
+    FROM car_table 
+    WHERE user_id = ${user.user_id};`
+    )
+    .then(cars =>{
+      userObj['cars'] = cars;
+      return userObj;
+    }).catch(err => {
+      throw err;
+    })
+  }
+
+  const userObj = {
+    user_id: user.user_id,
+    username: user.username,
+    location: user.location,
+    phone: user.phone,
+    email: user.email,
+  }
+
+  return {
+    cars: () => Cars()
+  }
+}
+
 router.post('/search', upload.array(), function(req, res, next){
   database.query( 
     `SELECT username, user_id, email, phone, location from user_table
      WHERE ${(req.body.queryType) ? `username LIKE '%${req.body.query}%'` : `user_id = ${req.body.query}`}
      AND type = 'user';
     `
-  ).then((rows, err) =>{
+  ).then((users, err) =>{
     if (err) throw err;
-    res.send(rows)
-  }).catch(err =>{
+    let usersList = users.map((user, i) =>{
+      user = new getServices(user);
+      user = Promise.resolve(user.cars())
+      return car;
+    })
+    return Promise.all(usersList).then((newList) => {return newList})
+  })
+  .then((newList, err) =>{
+    if (err) throw err;
+    res.send(newList);
+  })
+  .catch(err =>{
     console.log(err);
     res.sendStatus('400');
   })
