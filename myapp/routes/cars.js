@@ -91,6 +91,7 @@ database.query(
       arr[index].services = service;
     })
   });
+  console.log(cars)
   return cars;
 })
 .then(cars => {
