@@ -86,8 +86,9 @@ database.query(
   })
 
   cars.forEach((car, index) => {
-    car['services'].then(()=>{
-      cars[index] = car;
+    car['services'].then((newCar)=>{
+      cars[index] = newCar;
+      console.log(newCar);
     })
   });
   
