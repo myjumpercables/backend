@@ -106,7 +106,7 @@ router.post('/search', upload.array(), function(req, res, next){
     let usersList = users.map((user, i) =>{
       user = new getCars(user);
       user = Promise.resolve(user.cars())
-      return car;
+      return user;
     })
     return Promise.all(usersList).then((newList) => {return newList})
   })
