@@ -23,8 +23,13 @@ router.post('/add/:user_id', upload.array(), function(req, res, next){
     res.sendStatus(200);
   })
   .catch(err =>{
-    console.log(err);
-    res.status(500).send();
+    console.log(err.errno)
+    if(err.errno === 1062){ 
+      res.sendStatus(403);
+    }else {
+      console.log(err);
+      res.status(500).send();
+    }
   })
 });
 
