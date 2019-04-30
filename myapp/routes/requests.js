@@ -16,7 +16,7 @@ var database = new Database();
 router.post('/add/:user_id', upload.array(), function(req, res, next){
   database.query(
     `INSERT INTO request_table (user_id, state, company_id)
-    VALUES ('${req.params.user_id}', ${req.body.state}, '${req.body.company_id}');`
+    VALUES ('${req.params.user_id}', NULL, '${req.body.company_id}');`
   )
   .then((resp, err) =>{
     if(err) throw err;
