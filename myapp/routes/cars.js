@@ -41,11 +41,11 @@ router.get('/:id', upload.array(), function(req, res, next) {
 // });
 
 database.query(
-`SELECT car_id, make, model, year from cars WHERE user_id = ${req.body.id};`
+`SELECT car_id, make, model, year from car_table WHERE user_id = ${req.body.id};`
 )
 .then(carRows => {
   return Promise.all(carRows.map(carRow => {
-    database.query(`SELECT service_id, subject, text, date WHERE car_id = '${carRow.car_id}';`)
+    database.query(`SELECT service_id, service_type, service_desc, date FROM service_history_table WHERE car_id = '${carRow.car_id}';`)
       .then(serviceRows => {
         carRow['services'] = serviceRows;
         return carRow;
