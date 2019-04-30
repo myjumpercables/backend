@@ -5,9 +5,6 @@ var multer = require('multer');
 var upload = multer();
 var database = new Database();
 /* GET users listing. */
-var getServices = (id) => {
-}
-
 
 function getService(id) {
   return database.query(
@@ -125,7 +122,7 @@ database.query(
 //     res.sendStatus(500)
 //   })
 // });
-
+}
 //ADD CAR
 //add car
 router.post('/add/:id', upload.array(), function(req, res,next){
@@ -141,5 +138,4 @@ router.post('/add/:id', upload.array(), function(req, res,next){
 
 
 
-
-module.exports = router;
+module.exports = router
