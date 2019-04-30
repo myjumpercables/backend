@@ -81,7 +81,7 @@ database.query(
 ).then((cars, err) =>{
   if (err) throw err;
   cars = cars.map((car, i) =>{
-    car['services'] = getService(car.car_id);
+    return car['services'] = getService(car.car_id);
   })
 
   cars.forEach(car => {
