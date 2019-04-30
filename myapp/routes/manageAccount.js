@@ -31,6 +31,9 @@ router.post('/:user_id', upload.array(), function(req, res, next) {
       )
       res.send(rows);
     }
+  }).catch(err =>{
+    console.log(err);
+    res.satus(500).send();
   })
 });
 
