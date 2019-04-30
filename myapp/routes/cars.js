@@ -86,8 +86,6 @@ router.get('/:id', upload.array(), function(req, res, next) {
         carRow['services'] = serviceRows;
         newCarRow = carRow;
         return newCarRow;
-      }).finally(newCarRow => {
-        return newCarRow;
       })
     })
   }).then(result =>{
