@@ -23,7 +23,7 @@ router.post('/add/:user_id', upload.array(), function(req, res, next){
     res.sendStatus(200);
   })
   .catch(err =>{
-    if(err.errno === 1062){ 
+    if(err.errno === 1062){
       res.sendStatus(403);
     }else {
       console.log(err);
@@ -54,7 +54,7 @@ router.post('/update/:user_id', upload.array(), function(req, res, next){
     `UPDATE request_table
      SET state = true
      WHERE user_id = ${req.params.user_id}
-     AND company_id = ${req.body.company_id}
+     AND company_id = ${req.body.company_id};
      `
   )
   .then(res.send("OK"))
@@ -81,8 +81,8 @@ router.post('/delete/:user_id', upload.array(), function(req, res, next){
 function getCars(user){
   async function Cars() {
     return database.query(
-    `SELECT car_id, make, model, year 
-    FROM car_table 
+    `SELECT car_id, make, model, year
+    FROM car_table
     WHERE user_id = ${user.user_id};`
     )
     .then(cars =>{
