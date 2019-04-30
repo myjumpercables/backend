@@ -86,6 +86,9 @@ router.get('/:id', upload.array(), function(req, res, next) {
         carRow['services'] = serviceRows;
         newCarRow = carRow;
         return newCarRow;
+      }).catch(err =>{
+        console.log(err);
+        res.sendStatus(500);
       })
     })
   }).then(result =>{
