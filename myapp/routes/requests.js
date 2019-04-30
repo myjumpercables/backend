@@ -97,7 +97,7 @@ function getCars(user){
 
 router.post('/search', upload.array(), function(req, res, next){
   database.query( 
-    `SELECT username, user_table.user_id, phone, location
+    `SELECT username, user_table.user_id, phone, location, state
     FROM user_table LEFT JOIN request_table
     ON 
       user_table.user_id = request_table.user_id
