@@ -21,6 +21,33 @@ async function getService(id) {
   })
 }
 
+function getRepairs(service) {
+  async function Repairs() {
+    return database.query(
+    `SELECT repair_id, cost, date 
+    FROM repair_table 
+    WHERE service_id = '${serviceRow.service_id}';`
+    )
+    .then(repairRows =>{
+      serviceObj['repairs'] = repairRows;
+      return serviceObj;
+    }).catch(err => {
+      throw err;
+    })
+  }
+
+  const serviceObj = {
+    service_id: service.service_id,
+    service_type: service.service_type,
+    service_desc: service.service_desc,
+    date: service.date,
+  }
+
+  return {
+    repairs: () => Repairs()
+  }
+}
+
 function getServices(car) {
   async function Services() {
     return database.query(
@@ -28,10 +55,19 @@ function getServices(car) {
     FROM service_history_table
     WHERE car_id = ${car.car_id}`
     )
-    .then(serviceRows =>{
-      carObj['services'] = serviceRows;
+    .then((services, err) =>{
+      if (err) throw err;
+      let newServices = services.map((service, i) =>{
+        service = new getRepairs(service);
+        service = Promise.resolve(service.repairs())
+        return service;
+      })
+      return Promise.all(newCars).then((newList) => {return newList})
+    }).then(serviceList=>{
+      carObj['services'] = serviceList;
       return carObj;
-    }).catch(err => {
+    })
+    .catch(err => {
       throw err;
     })
   }
@@ -115,7 +151,6 @@ database.query(
     car = Promise.resolve(car.services())
     return car;
   })
-
   return Promise.all(newCars).then((newList) => {return newList})
 })
 .then(cars => {
