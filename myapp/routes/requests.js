@@ -16,7 +16,7 @@ var database = new Database();
 router.post('/add/:user_id', upload.array(), function(req, res, next){
   database.query(
     `INSERT INTO request_table (user_id, state, company_id)
-    VALUES ('${req.params.user_id}', '${req.body.state}', '${req.body.company_id}');`
+    VALUES ('${req.params.user_id}', ${req.body.state}, '${req.body.company_id}');`
   )
   .then(res.send("OK"))
   .catch(err =>{
@@ -28,7 +28,7 @@ router.post('/add/:user_id', upload.array(), function(req, res, next){
 router.get('/getRequests/:user_id', upload.array(), function(req, res, next){
   database.query(
     `SELECT company_id, username FROM request_table JOIN user_table
-     ON request.company_id = user.user_id
+     ON request.company_id = ${user.user_id}
      WHERE request.user_id = ${req.params.user_id} AND state = IS NULL;`
   )
   .then(res.send("OK"))
