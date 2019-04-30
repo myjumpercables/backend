@@ -5,6 +5,17 @@ var multer = require('multer');
 var upload = multer();
 var database = new Database();
 /* GET users listing. */
+var getServices = async (id) => {
+  return database.query(
+    `
+    SELECT service_id, service_type, service_desc, date
+    FROM service_history_table
+    WHERE car_id = ${id}
+    `
+  ).then(serviceRows =>{
+    return serviceRows;
+  }) 
+}
 router.get('/:id', upload.array(), function(req, res, next) {
   //connection.connect()
   //get all cars
@@ -76,6 +87,7 @@ router.get('/:id', upload.array(), function(req, res, next) {
     console.log(err);
     res.sendStatus(500)
   })
+});
 
 //ADD CAR
 //add car
