@@ -6,7 +6,7 @@ var upload = multer();
 var database = new Database();
 /* GET users listing. */
 
-function getService(id) {
+async function getService(id) {
   return database.query(
     `
     SELECT service_id, service_type, service_desc, date
@@ -14,8 +14,38 @@ function getService(id) {
     WHERE car_id = ${id}
     `
   ).then(serviceRows =>{
-    return serviceRows;
+    carObj['services'] = serviceRows;
+    return carObj;
+  }).catch(err => {
+    throw err;
   })
+}
+
+function getServices(car) {
+  async function Services() {
+    return database.query(
+    `SELECT service_id, service_type, service_desc, date
+    FROM service_history_table
+    WHERE car_id = ${car.car_id}`
+    )
+    .then(serviceRows =>{
+      carObj['services'] = serviceRows;
+      return carObj;
+    }).catch(err => {
+      throw err;
+    })
+  }
+
+  const carObj = {
+    car_id: car.car_id,
+    make: car.make,
+    model: car.model,
+    year: car.year,
+  }
+
+  return {
+    services: () => Services()
+  }
 }
 
 router.get('/:id', upload.array(), function(req, res, next) {
@@ -81,18 +111,12 @@ database.query(
 ).then((cars, err) =>{
   if (err) throw err;
   cars = cars.map((car, i) =>{
-    car['services'] = getService(car.car_id);
+    car = new getServices(car);
+    car = Promise.resolve(car.services())
     return car;
   })
 
-  cars.forEach((car, index, arr) => {
-    car['services']
-    .then((service)=>{
-      arr[index].services = service;
-    })
-  });
-  console.log(cars)
-  return cars;
+  return cars
 })
 .then(cars => {
   res.send(cars);
