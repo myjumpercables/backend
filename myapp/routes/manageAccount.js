@@ -28,9 +28,16 @@ router.post('/:user_id', upload.array(), function(req, res, next) {
           username = ${req.body.username},
           password = ${req.body.password},
         WHERE user_id = ${req.params.user_id};`
-      )
+      ).catch(err =>{
+        console.log(err);
+        res.status(500).send();
+      );
+      }
     }
-  })
+  }).catch(err =>{
+    console.log(err);
+    res.status(500).send();
+  );
 });
 
 module.exports = router;
