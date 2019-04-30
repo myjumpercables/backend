@@ -9,7 +9,7 @@ var database = new Database();
 async function getService(id) {
   return database.query(
     `
-    SELECT service_id as id, service_type as subject, service_desc as description, date
+    SELECT service_id, service_type, service_desc, date
     FROM service_history_table
     WHERE car_id = ${id}
     `
