@@ -38,10 +38,10 @@ router.get('/getRequests/:user_id', upload.array(), function(req, res, next){
      ON request_table.company_id = user_table.user_id
      WHERE request_table.user_id = ${req.params.user_id} AND state IS NULL;`
   )
-  .then((res, err) =>{
+  .then((data, err) =>{
     if (err) throw err;
-    console.log(res);
-    res.send(res);
+    console.log(data);
+    res.send(data);
   })
   .catch(err =>{
     console.log(err);
