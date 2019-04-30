@@ -63,7 +63,8 @@ function getServices(car) {
         return service;
       })
       return Promise.all(newServices).then((newList) => {return newList})
-    }).then(serviceList=>{
+    }).then((serviceList,err)=>{
+      if (err) throw err;
       carObj['services'] = serviceList;
       return carObj;
     })
