@@ -87,11 +87,15 @@ database.query(
 
   cars.forEach((car, index) => {
     car['services'].then(()=>{
-      cars[i] = car;
+      cars[index] = car;
     })
   });
-
+  
   res.send(cars);
+})
+.catch(err =>{
+  console.log({Error: err});
+  res.statusCode(500);
 })
 
 //   database.query(
