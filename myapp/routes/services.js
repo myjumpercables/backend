@@ -17,7 +17,12 @@ router.post('/add/:car_id', upload.array(), function(req, res, next){
   database.query(
     `INSERT INTO service_history_table(service_type, service_desc, date, car_id,service_id)
     VALUES ('${req.body.service_type}', '${req.body.service_desc}', '${req.body.date}', '${req.params.car_id}');`
-  ).then(res.send("OK"))
+  ).then((good, err)=>{
+    if(err){
+      res.statusCode(500).send();
+    }
+    res.sendStatus(200);
+  })
   .catch(err =>{
     console.log(err);
     res.status(500).send();
