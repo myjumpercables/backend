@@ -81,15 +81,14 @@ router.get('/:id', upload.array(), function(req, res, next) {
       database.query(` 
       SELECT service_id, service_type, service_desc, date
       FROM service_history_table
-      WHERE car_id = ${carRow.id}
+      WHERE car_id = ${carRow.car_id}
       `).then(serviceRows => {
         carRow['services'] = serviceRows;
-        newCarRow = carRow;
-        return newCarRow;
       }).catch(err =>{
         console.log(err);
-        res.sendStatus(500);
+        throw err;
       })
+      return carRow;
     })
   }).then(result =>{
     res.send(result)
