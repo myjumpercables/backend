@@ -85,6 +85,8 @@ router.get('/:id', upload.array(), function(req, res, next) {
       `).then((serviceRows, err) => {
         if(err) throw err;
         carRow['services'] = serviceRows;
+        console.log("IN SERVICES");
+        console.log(serviceRows);
       })
       .catch(err =>{
         console.log(err);
