@@ -49,15 +49,17 @@ router.get('/getRequests/:user_id', upload.array(), function(req, res, next){
   })
 });
 
-router.post('/update/:user_id', upload.array(), function(req, res, next){
+router.post('/update/:request_id', upload.array(), function(req, res, next){
   database.query(
     `UPDATE request_table
      SET state = true
-     WHERE user_id = ${req.params.user_id}
-     AND company_id = ${req.body.company_id};
+     WHERE request_id = ${req.params.request_id};
      `
   )
-  .then(res.send("OK"))
+  .then((result, err) =>{
+    if (err) throw err;
+    res.sendStatus(200);
+  })
   .catch(err =>{
     console.log(err);
     res.status(500).send();
