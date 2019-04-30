@@ -5,7 +5,11 @@ var multer = require('multer');
 var upload = multer();
 var database = new Database();
 /* GET users listing. */
-var getServices = async (id) => {
+var getServices = (id) => {
+}
+
+
+function getService(id) {
   return database.query(
     `
     SELECT service_id, service_type, service_desc, date
@@ -16,6 +20,7 @@ var getServices = async (id) => {
     return serviceRows;
   })
 }
+
 router.get('/:id', upload.array(), function(req, res, next) {
   //connection.connect()
   //get all cars
@@ -74,37 +79,52 @@ router.get('/:id', upload.array(), function(req, res, next) {
 //   })
 // });
 
-  database.query(
-`SELECT car_id, make, model, year from car_table WHERE user_id = ${req.params.id};`)
-  .then(carRows =>{
-    carRows.map((carRow) => {
-      let newRow = await database.query
-      (
-      ` 
-      SELECT service_id, service_type, service_desc, date
-      FROM service_history_table
-      WHERE car_id = ${carRow.car_id}
-      `
-      ).then((serviceRows, err) => {
-        if(err) throw err;
-        carRow['services'] = serviceRows;
-        console.log("IN SERVICES");
-        console.log(serviceRows);
-        console.log(carRow);
-      })
-      .catch(err =>{
-        console.log(err);
-      })
-      return newRow;
-    })
-    return arr;
-  }).then(result =>{
-    res.send(result)
-  }).catch(err=>{
-    console.log(err);
-    res.sendStatus(500)
+database.query(
+  `SELECT car_id, make, model, year from car_table WHERE user_id = ${req.params.id};`
+).then((cars, err) =>{
+  if (err) throw err;
+  cars = cars.map((car, i) =>{
+    car['services'] = getService(car.car_id);
   })
-});
+
+  cars.forEach(car => {
+    car['services'].then(()=>{
+      console.log(car);
+    })
+  });
+})
+
+//   database.query(
+// `SELECT car_id, make, model, year from car_table WHERE user_id = ${req.params.id};`)
+//   .then(carRows =>{
+//     carRows.map((carRow) => {
+//       let newRow = database.query
+//       (
+//       ` 
+//       SELECT service_id, service_type, service_desc, date
+//       FROM service_history_table
+//       WHERE car_id = ${carRow.car_id}
+//       `
+//       ).then((serviceRows, err) => {
+//         if(err) throw err;
+//         carRow['services'] = serviceRows;
+//         console.log("IN SERVICES");
+//         console.log(serviceRows);
+//         console.log(carRow);
+//       })
+//       .catch(err =>{
+//         console.log(err);
+//       })
+//       return newRow;
+//     })
+//     return arr;
+//   }).then(result =>{
+//     res.send(result)
+//   }).catch(err=>{
+//     console.log(err);
+//     res.sendStatus(500)
+//   })
+// });
 
 //ADD CAR
 //add car
