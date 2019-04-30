@@ -74,6 +74,7 @@ router.get('/search', upload.array(), function(req, res, next){
      AND type = 'user';
     `
   ).then((rows, err) =>{
+    if (err) throw err;
     res.send(rows)
   }).catch(err =>{
     res.sendStatus('400');
