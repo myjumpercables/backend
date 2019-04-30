@@ -19,7 +19,8 @@ router.get('/:company_id', upload.array(), function(req, res, next){
        WHERE request_table.company_id = ${req.params.company_id} AND state = NULL;`
     )
     .then(rows => {
-      res.send(rows)
+      console.log(rows);
+      res.send(rows);
     })
     .catch(err =>{
       console.log(err);
