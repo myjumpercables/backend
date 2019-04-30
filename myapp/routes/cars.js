@@ -62,7 +62,7 @@ function getServices(car) {
         service = Promise.resolve(service.repairs())
         return service;
       })
-      return Promise.all(newCars).then((newList) => {return newList})
+      return Promise.all(newServices).then((newList) => {return newList})
     }).then(serviceList=>{
       carObj['services'] = serviceList;
       return carObj;
