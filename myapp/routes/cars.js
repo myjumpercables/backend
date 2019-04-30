@@ -85,9 +85,9 @@ database.query(
     return car;
   })
 
-  cars.forEach(car => {
+  cars.forEach((car, index) => {
     car['services'].then(()=>{
-      console.log(car);
+      cars[i] = car;
     })
   });
 
