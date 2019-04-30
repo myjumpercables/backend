@@ -77,7 +77,7 @@ router.get('/:id', upload.array(), function(req, res, next) {
   database.query(
 `SELECT car_id, make, model, year from car_table WHERE user_id = ${req.params.id};`)
   .then(carRows =>{
-    carRows.map((carRow) => {
+    return carRows.map((carRow) => {
       database.query(` 
       SELECT service_id, service_type, service_desc, date
       FROM service_history_table
