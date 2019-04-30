@@ -80,8 +80,8 @@ router.get('/:id', upload.array(), function(req, res, next) {
     return carRows.map(carRow =>{
       getServices(carRow.car_id).then(serviceRows =>{
         carRow['services'] = serviceRows;
+        return carRow;
       });
-      return carRow;
     })
   }).then(result =>{
     res.send(result)
