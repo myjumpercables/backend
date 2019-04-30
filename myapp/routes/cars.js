@@ -44,17 +44,20 @@ database.query(
 `SELECT car_id, make, model, year from cars WHERE user_id = ${req.body.id};`
 )
 .then(carRows => {
-Promise.all(carRows.map(carRow => {
-database.query(`SELECT service_id, subject, text, date WHERE car_id = '${carRow.car_id}';`)
-.then(serviceRows => {
-carRow['services'] = serviceRows;
-})
-.catch(err =>{
-console.log(err);
-res.sendStatus(500);
-})
-}))
-})
+  return Promise.all(carRows.map(carRow => {
+    database.query(`SELECT service_id, subject, text, date WHERE car_id = '${carRow.car_id}';`)
+      .then(serviceRows => {
+        carRow['services'] = serviceRows;
+        return carRow;
+      })
+      .catch(err =>{
+        console.log(err);
+        res.sendStatus(500);
+      })
+    }))
+  }).then(result => {
+    res.send(results);
+  })
 });
 
 
