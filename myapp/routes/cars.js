@@ -56,7 +56,7 @@ database.query(
       })
     }))
   }).then(result => {
-    res.send(results);
+    res.send(result);
   })
 });
 
