@@ -122,7 +122,7 @@ database.query(
 //     res.sendStatus(500)
 //   })
 // });
-}
+})
 //ADD CAR
 //add car
 router.post('/add/:id', upload.array(), function(req, res,next){
