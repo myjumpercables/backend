@@ -26,7 +26,7 @@ function getRepairs(service) {
     return database.query(
     `SELECT repair_id, cost, date 
     FROM repair_table 
-    WHERE service_id = '${serviceRow.service_id}';`
+    WHERE service_id = '${service.service_id}';`
     )
     .then(repairRows =>{
       serviceObj['repairs'] = repairRows;
