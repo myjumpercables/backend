@@ -40,29 +40,42 @@ router.get('/:id', upload.array(), function(req, res, next) {
 //   })
 // });
 
-database.query(
-`SELECT car_id, make, model, year FROM car_table WHERE user_id = ${req.params.id};`
-)
-.then(carRows => {
-  Promise.all(carRows.map(carRow => {
-    database.query(`SELECT service_id, service_type, service_desc, date FROM service_history_table WHERE car_id = '${carRow.car_id}';`)
-      .then(serviceRows => {
-        carRow['services'] = serviceRows;
-        return carRow;
-      })
-      .catch(err =>{
-        console.log(err);
-        return "error"
-        res.sendStatus(500);
-      })
-    })).then({
+// database.query(
+// `SELECT car_id, make, model, year FROM car_table WHERE user_id = ${req.params.id};`
+// )
+// .then(carRows => {
+//   Promise.all(carRows.map(carRow => {
+//     database.query(`SELECT service_id, service_type, service_desc, date FROM service_history_table WHERE car_id = '${carRow.car_id}';`)
+//       .then(serviceRows => {
+//         carRow['services'] = serviceRows;
+//         return carRow;
+//       })
+//       .catch(err =>{
+//         console.log(err);
+//         return "error"
+//         res.sendStatus(500);
+//       })
+//     })).then({
+//
+//     })
+//   }).then(result => {
+//     res.send(result);
+//   })
+// });
 
+  database.query(
+`SELECT car_id, make, model, year from car_table WHERE user_id = ${req.body.id};`)
+  .then(carRows =>{
+    return carRows.map(carRow =>{
+      carRow['services'] = getServices(carRow.car_id)
+      return carRow;
     })
-  }).then(result => {
-    res.send(result);
+  }).then(result =>{
+    res.send(result)
+  }).catch(err=>{
+    console.log(err);
+    res.sendStatus(500)
   })
-});
-
 
 //ADD CAR
 //add car
