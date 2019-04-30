@@ -15,7 +15,7 @@ var database = new Database();
 // Manage Account Router
 router.post('/:user_id', upload.array(), function(req, res, next) {
   database.query(
-    `SELECT * FROM user_table WHERE user_id = ${req.params.user_id};`
+    `SELECT * FROM user_table WHERE user_id = '${req.params.user_id}';`
   ).then(rows => {
     if(rows.length == 0){
       console.log({error: "Account Doesn't Exist"});
