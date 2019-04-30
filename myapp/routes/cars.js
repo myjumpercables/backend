@@ -41,7 +41,7 @@ router.get('/:id', upload.array(), function(req, res, next) {
 // });
 
 database.query(
-`SELECT car_id, make, model, year from car_table WHERE user_id = ${req.body.id};`
+`SELECT car_id, make, model, year from car_table WHERE user_id = ${req.params.id};`
 )
 .then(carRows => {
   return Promise.all(carRows.map(carRow => {
