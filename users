@@ -1,6 +1,7 @@
 CREATE TABLE user_table (
   user_id int(11),
   username varchar(25),
+  email varchar(25),
   type varchar(25),
   password varchar(25),
   location varchar(25),
