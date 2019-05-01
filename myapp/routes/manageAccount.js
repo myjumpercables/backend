@@ -18,8 +18,8 @@ router.post('/:user_id', upload.array(), function(req, res, next) {
   database.query(
     `SELECT * 
     FROM user_table 
-    WHERE user_id = '${req.params.user_id}
-    AND password ='${req.body.password}';`
+    WHERE user_id = ${req.params.user_id}
+    AND password = '${req.body.password}';`
   ).then((rows, err) => {
     if (err) throw err;
     if(rows.length == 0){
