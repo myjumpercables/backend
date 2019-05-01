@@ -34,7 +34,7 @@ router.post('/add/:user_id', upload.array(), function(req, res, next){
 
 router.get('/getRequests/:user_id', upload.array(), function(req, res, next){
   database.query(
-    `SELECT company_id AS companyId, username AS companyName, request_id FROM request_table JOIN user_table
+    `SELECT company_id AS companyId, username AS companyName, description, location, phone, request_id FROM request_table JOIN user_table
      ON request_table.company_id = user_table.user_id
      WHERE request_table.user_id = ${req.params.user_id} AND state IS NULL;`
   )
@@ -51,7 +51,7 @@ router.get('/getRequests/:user_id', upload.array(), function(req, res, next){
 
 router.get('/companies/:user_id', upload.array(), function(req, res, next){
   database.query(
-    `SELECT company_id AS companyId, location, phone, username AS companyName, request_id FROM request_table JOIN user_table
+    `SELECT company_id AS companyId, description, location, phone, username AS companyName, request_id FROM request_table JOIN user_table
      ON request_table.company_id = user_table.user_id
      WHERE request_table.user_id = ${req.params.user_id} AND state = 1;`
   )
@@ -83,14 +83,16 @@ router.post('/update/:request_id', upload.array(), function(req, res, next){
   })
 });
 
-router.post('/delete/:user_id', upload.array(), function(req, res, next){
+router.post('/delete/:request_id', upload.array(), function(req, res, next){
   database.query(
     `DELETE FROM request_table
-     WHERE user_id = ${req.params.user_id}
-     AND company_id = ${req.body.company_id}
+     WHERE request_id = ${req.params.request_id}
      `
   )
-  .then(res.send("OK"))
+  .then((resp, err)=>{
+    if (err) throw err;
+    res.sendStatus(200);
+  })
   .catch(err =>{
     console.log(err);
     res.status(500).send();

@@ -82,7 +82,8 @@ database.query(
   })
   return Promise.all(newCars).then((newList) => {return newList})
 })
-.then(cars => {
+.then((cars, err) => {
+  if (err) throw err;
   res.send(cars);
 })
 .catch(err =>{

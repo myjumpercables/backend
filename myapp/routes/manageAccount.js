@@ -14,8 +14,12 @@ var database = new Database();
 
 // Manage Account Router
 router.post('/:user_id', upload.array(), function(req, res, next) {
+  console.log(req.body);
   database.query(
-    `SELECT * FROM user_table WHERE user_id = '${req.params.user_id}';`
+    `SELECT * 
+    FROM user_table 
+    WHERE user_id = ${req.params.user_id}
+    AND password = '${req.body.password}';`
   ).then((rows, err) => {
     if (err) throw err;
     if(rows.length == 0){
@@ -26,15 +30,25 @@ router.post('/:user_id', upload.array(), function(req, res, next) {
       database.query(
         `UPDATE user_table
         SET
-          username = ${req.body.username},
-          password = ${req.body.password},
+          username = '${req.body.username}',
+          phone = '${req.body.phone}',
+          location = '${req.body.location}',
+          email = '${req.body.email}',
+          description = '${req.body.description}'
         WHERE user_id = ${req.params.user_id};`
-      )
-      res.send(rows);
+      ).then((resp,err)=>{
+        if(err) throw err;
+        res.send(rows);
+      })
+      .catch(err=>{
+        console.log(err)
+        res.sendStatus(500);
+      })
     }
-  }).catch(err =>{
-    console.log(err);
-    res.statusCode(500);
+  })
+  .catch(err=>{
+    console.log(err)
+    res.sendStatus(500);
   })
 });
 
