@@ -31,7 +31,7 @@ router.post('/:user_id', upload.array(), function(req, res, next) {
         `UPDATE user_table
         SET
           username = '${req.body.username}',
-          phone = ${req.body.phone},
+          phone = '${req.body.phone}',
           location = '${req.body.location}',
           email = '${req.body.email}',
           description = '${req.body.description}'
