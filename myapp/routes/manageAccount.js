@@ -46,6 +46,10 @@ router.post('/:user_id', upload.array(), function(req, res, next) {
       })
     }
   })
+  .catch(err=>{
+    console.log(err)
+    res.sendStatus(500);
+  })
 });
 
 module.exports = router;
