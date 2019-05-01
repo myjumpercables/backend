@@ -107,7 +107,7 @@ function getCars(user){
     .then(cars =>{
       userObj['cars'] = cars;
       if(user.state) {
-        userObj['state'] == user.state;
+        userObj['state'] = user.state;
       }
       return userObj;
     }).catch(err => {
