@@ -21,9 +21,14 @@ router.post('/:user_id', upload.array(), function(req, res, next) {
         SET
           password = ${req.body.new_password},
         WHERE user_id = ${req.params.user_id};`
-      )
-      res.send(rows);
-
+      ).then((resp, err) =>{
+        if (err) throw err;
+        res.send(rows);
+      })
+      .catch(err=>{
+        console.log(err)
+        res.sendStatus(500);
+      })
     }
   }).catch(err =>{
     console.log(err);
