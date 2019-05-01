@@ -1,10 +1,10 @@
 CREATE TABLE user_table (
   user_id int(11),
   username varchar(25),
-  email varchar(25),
+  email varchar(50),
   type varchar(25),
   password varchar(25),
-  location varchar(25),
+  location varchar(50),
   phone varchar(25),
   description text,
   PRIMARY KEY(user_id)

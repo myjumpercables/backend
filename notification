@@ -2,6 +2,6 @@ CREATE TABLE notification_table (
   user_id int(11),
   date date,
   service_type varchar(25),
-  location varchar(25),
+  location varchar(50),
   FOREIGN KEY(user_id) references user_table(user_id)
 );
