@@ -15,8 +15,8 @@ var database = new Database();
 // In REPAIR ROUTER
 router.post('/add/:service_id', upload.array(), function(req, res, next){
   database.query(
-    `INSERT INTO repair_table(car_repair, repair_desc, date, service_id)
-    VALUES ('${req.body.car_repair}', '${req.body.repair_desc}', '${req.body.date}', '${req.params.service_id}');`
+    `INSERT INTO repair_table(car_repair,repair_type, repair_desc,cost, date, service_id)
+    VALUES ('${req.body.car_repair}','${req.body.repair_type}', '${req.body.repair_desc}','${req.body.cost}', '${req.body.date}', '${req.params.service_id}');`
   )
   .then(res.send("OK"))
   .catch(err =>{

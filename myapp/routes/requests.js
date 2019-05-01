@@ -174,7 +174,7 @@ router.get('/users/:user_id', upload.array(), function(req, res, next){
     `SELECT user_id, location, phone, username, email, request_id
     FROM request_table JOIN user_table
     ON request_table.user_id = user_table.user_id
-    WHERE request_table.company_id = ${req.params.user_id} AND state = 1;`
+    WHERE request_table.company_id = ${req.params.user_id} ;`
   )
   .then((users, err) =>{
     if (err) throw err;
