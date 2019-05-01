@@ -9,6 +9,7 @@ var database = new Database();
 /* GET users listing. */
 router.get('/details/:id', upload.array(), function(req, res, next) {
   //connection.connect()
+  console.log("")
   database.query(
     `SELECT username, email, phone, location, description
     FROM user_table
