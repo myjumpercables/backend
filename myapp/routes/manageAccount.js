@@ -33,7 +33,7 @@ router.post('/:user_id', upload.array(), function(req, res, next) {
           location = '${req.body.location}',
           email = '${req.body.email}',
           description = '${req.body.description}'
-        WHERE user_id = ${req.params.user_id};`
+        WHERE user_id = ${req.params.user_id} AND password = ${req.body.password};`
       ).then((resp,err)=>{
         if(err) throw err;
         res.send(rows);
