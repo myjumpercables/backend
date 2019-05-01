@@ -1,6 +1,7 @@
 CREATE TABLE repair_table (
   car_repair varchar(25),
   repair_desc text,
+  repair_type varchar(25),
   cost int(10),
   date date,
   repair_id int(11),
