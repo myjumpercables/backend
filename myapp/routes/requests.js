@@ -177,6 +177,7 @@ router.get('/users/:user_id', upload.array(), function(req, res, next){
     WHERE request_table.company_id = ${req.params.user_id} AND state = 1;`
   )
   .then((users, err) =>{
+    console.log(users);
     if (err) throw err;
     let usersList = users.map((user, i) =>{
       user = new getCars(user);
