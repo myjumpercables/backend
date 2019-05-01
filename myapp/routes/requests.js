@@ -106,6 +106,9 @@ function getCars(user){
     )
     .then(cars =>{
       userObj['cars'] = cars;
+      if(user.state) {
+        userObj['state'] == user.state;
+      }
       return userObj;
     }).catch(err => {
       throw err;
@@ -118,7 +121,6 @@ function getCars(user){
     location: user.location,
     phone: user.phone,
     email: user.email,
-    state: user.state,
   }
 
   return {
@@ -153,7 +155,7 @@ router.post('/search', upload.array(), function(req, res, next){
 })
 
 router.get('/users/:user_id', upload.array(), function(req, res, next){
-  database.query(z
+  database.query(
     `SELECT user_table.user_id, location, phone, username, request_id, request_table.state
     FROM request_table JOIN user_table
     ON request_table.user_id = user_table.user_id
