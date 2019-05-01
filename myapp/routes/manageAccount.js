@@ -29,9 +29,9 @@ router.post('/:user_id', upload.array(), function(req, res, next) {
           username = ${req.body.username},
           password = ${req.body.password},
           phone = ${req.body.phone},
-          location = ${req.body.location},
-          email = ${req.body.email},
-          description = ${req.body.description},
+          location = '${req.body.location}',
+          email = '${req.body.email}',
+          description = '${req.body.description}',
         WHERE user_id = ${req.params.user_id};`
       ).then((resp,err)=>{
         if(err) throw err;
