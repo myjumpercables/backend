@@ -32,7 +32,7 @@ router.post('/:user_id', upload.array(), function(req, res, next) {
           phone = ${req.body.phone},
           location = '${req.body.location}',
           email = '${req.body.email}',
-          description = '${req.body.description}',
+          description = '${req.body.description}'
         WHERE user_id = ${req.params.user_id};`
       ).then((resp,err)=>{
         if(err) throw err;
