@@ -16,10 +16,11 @@ var database = new Database();
 router.post('/:user_id', upload.array(), function(req, res, next) {
   database.query(
     `SELECT * FROM user_table WHERE user_id = '${req.params.user_id}';`
-  ).then((err,rows) => {
+  ).then((rows, err) => {
+    if (err) throw err;
     if(rows.length == 0){
       console.log({error: "Account Doesn't Exist"});
-      res.sendStatus(500);
+      res.sendStatus(403);
     }
     else {
       database.query(
@@ -33,7 +34,7 @@ router.post('/:user_id', upload.array(), function(req, res, next) {
     }
   }).catch(err =>{
     console.log(err);
-    res.satus(500).send();
+    res.statusCode(500);
   })
 });
 
