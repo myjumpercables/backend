@@ -16,7 +16,7 @@ router.get('/details/:id', upload.array(), function(req, res, next) {
   )
   .then((rows, err) =>{
     if (err) throw err;
-    res.send(rows);
+    res.send(rows[0]);
   })
   .catch(err =>{
     console.log(err);
