@@ -83,14 +83,16 @@ router.post('/update/:request_id', upload.array(), function(req, res, next){
   })
 });
 
-router.post('/delete/:user_id', upload.array(), function(req, res, next){
+router.post('/delete/:request_id', upload.array(), function(req, res, next){
   database.query(
     `DELETE FROM request_table
-     WHERE user_id = ${req.params.user_id}
-     AND company_id = ${req.body.company_id}
+     WHERE request_id = ${request_id}
      `
   )
-  .then(res.send("OK"))
+  .then((resp, err)=>{
+    if (err) throw err;
+    res.sendStatus(200);
+  })
   .catch(err =>{
     console.log(err);
     res.status(500).send();
