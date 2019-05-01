@@ -19,7 +19,7 @@ router.post('/:user_id', upload.array(), function(req, res, next) {
       database.query(
         `UPDATE user_table
         SET
-          password = ${req.body.new_password},
+          password = ${req.body.new_password}
         WHERE user_id = ${req.params.user_id};`
       ).then((resp, err) =>{
         if (err) throw err;
