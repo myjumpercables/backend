@@ -11,7 +11,7 @@ router.get('/details/:id', upload.array(), function(req, res, next) {
   //connection.connect()
   database.query(
     `SELECT username, email, phone, location, description
-    FROM user_tables
+    FROM user_table
     WHERE user_id = ${req.params.id}`
   )
   .then((rows, err) =>{
