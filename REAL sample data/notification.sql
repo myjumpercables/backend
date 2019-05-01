@@ -9,7 +9,7 @@ CREATE TABLE `notification` (
   PRIMARY KEY (`id`)
 ) AUTO_INCREMENT=1;
 
-INSERT INTO `notification` (`user_id`,`date`,`service_type`,`location`) VALUES 
+INSERT INTO `notification_table` (`user_id`,`date`,`service_type`,`location`) VALUES 
 (27610682449,"2020-02-20 14:22:27",1,"8467 Sit Av."),
 (83722931863,"2019-04-23 08:28:10",2,"Ap #240-2345 Et Av."),
 (47500164899,"2019-05-31 11:10:09",3,"490-8086 Sed Av."),

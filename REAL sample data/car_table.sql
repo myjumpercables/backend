@@ -1,7 +1,7 @@
 
 
 
-INSERT INTO 'car_table' ('make','model','year','mileage','car_id','user_id') VALUES
+INSERT INTO `car_table` (`make`,`model`,`year`,`mileage`,`car_id`,`user_id`) VALUES
 ('Lexus', 'LS',2012,15959271765,27610682449,),
 ('Audi', 'A8',2000,90000,35145633993,27610682449),
 ('Mazda', 'Tribute',2005,40000,65137949269,47500164899),
