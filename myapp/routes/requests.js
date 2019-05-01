@@ -68,7 +68,7 @@ router.get('/companies/:user_id', upload.array(), function(req, res, next){
 
 router.get('/users/:user_id', upload.array(), function(req, res, next){
   database.query(
-    `SELECT company_id AS companyId, location, phone, username AS companyName, request_id 
+    `SELECT company_id AS companyId, location, phone, username AS companyName, request_id
     FROM request_table JOIN user_table
      ON request_table.user_id = user_table.user_id
      WHERE request_table.company_id = ${req.params.user_id} AND state = 1;`
@@ -144,9 +144,9 @@ function getCars(user){
 }
 
 router.post('/search', upload.array(), function(req, res, next){
-  database.query( 
+  database.query(
     `SELECT username, user_table.user_id, phone, location
-    FROM user_table 
+    FROM user_table
     WHERE ${(req.body.queryType) ? `username LIKE '%${req.body.query}%'` : `user_table.user_id = ${req.body.query}`}
     AND type = 'user';
     `
@@ -171,7 +171,7 @@ router.post('/search', upload.array(), function(req, res, next){
 
 router.get('/users/:user_id', upload.array(), function(req, res, next){
   database.query(
-    `SELECT user_id, location, phone, username, email, request_id 
+    `SELECT user_id, location, phone, username, email, request_id
     FROM request_table JOIN user_table
     ON request_table.user_id = user_table.user_id
     WHERE request_table.company_id = ${req.params.user_id} AND state = 1;`
@@ -193,5 +193,6 @@ router.get('/users/:user_id', upload.array(), function(req, res, next){
     console.log(err);
     res.sendStatus('400');
   })
+});
 
 module.exports = router;
