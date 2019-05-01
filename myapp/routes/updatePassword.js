@@ -15,7 +15,7 @@ var database = new Database();
 // Manage Account Router
 router.post('/:user_id', upload.array(), function(req, res, next) {
   database.query(
-    `SELECT * FROM user_table WHERE user_id = '${req.params.user_id}';`
+    `SELECT * FROM user_table WHERE user_id = '${req.params.user_id}' AND password = '${req.body.password}';`
   ).then((rows, err) => {
     if (err) throw err;
     if(rows.length == 0){
@@ -26,8 +26,7 @@ router.post('/:user_id', upload.array(), function(req, res, next) {
       database.query(
         `UPDATE user_table
         SET
-          username = ${req.body.username},
-          password = ${req.body.password},
+          password = ${req.body.new_password},
         WHERE user_id = ${req.params.user_id};`
       )
       res.send(rows);

@@ -23,7 +23,7 @@ router.post('/add/:user_id', upload.array(), function(req, res, next){
     res.sendStatus(200);
   })
   .catch(err =>{
-    if(err.errno === 1062){ 
+    if(err.errno === 1062){
       res.sendStatus(403);
     }else {
       console.log(err);
@@ -49,15 +49,34 @@ router.get('/getRequests/:user_id', upload.array(), function(req, res, next){
   })
 });
 
-router.post('/update/:user_id', upload.array(), function(req, res, next){
+router.get('/companies/:user_id', upload.array(), function(req, res, next){
+  database.query(
+    `SELECT company_id AS companyId, location, phone, username AS companyName, request_id FROM request_table JOIN user_table
+     ON request_table.company_id = user_table.user_id
+     WHERE request_table.user_id = ${req.params.user_id} AND state = 1;`
+  )
+  .then((data, err) =>{
+    if (err) throw err;
+    console.log(data);
+    res.send(data);
+  })
+  .catch(err =>{
+    console.log(err);
+    res.status(500).send();
+  })
+});
+
+router.post('/update/:request_id', upload.array(), function(req, res, next){
   database.query(
     `UPDATE request_table
      SET state = true
-     WHERE user_id = ${req.params.user_id}
-     AND company_id = ${req.body.company_id}
+     WHERE request_id = ${req.params.request_id};
      `
   )
-  .then(res.send("OK"))
+  .then((result, err) =>{
+    if (err) throw err;
+    res.sendStatus(200);
+  })
   .catch(err =>{
     console.log(err);
     res.status(500).send();
@@ -81,12 +100,15 @@ router.post('/delete/:user_id', upload.array(), function(req, res, next){
 function getCars(user){
   async function Cars() {
     return database.query(
-    `SELECT car_id, make, model, year 
-    FROM car_table 
+    `SELECT car_id, make, model, year
+    FROM car_table
     WHERE user_id = ${user.user_id};`
     )
     .then(cars =>{
       userObj['cars'] = cars;
+      if(user.state) {
+        userObj['state'] = user.state;
+      }
       return userObj;
     }).catch(err => {
       throw err;
@@ -107,11 +129,9 @@ function getCars(user){
 }
 
 router.post('/search', upload.array(), function(req, res, next){
-  database.query( 
-    `SELECT username, user_table.user_id, phone, location, state
-    FROM user_table LEFT JOIN request_table
-    ON 
-      user_table.user_id = request_table.user_id
+  database.query(
+    `SELECT username, user_table.user_id, phone, location
+    FROM user_table
     WHERE ${(req.body.queryType) ? `username LIKE '%${req.body.query}%'` : `user_table.user_id = ${req.body.query}`}
     AND type = 'user';
     `
@@ -133,5 +153,32 @@ router.post('/search', upload.array(), function(req, res, next){
     res.sendStatus('400');
   })
 })
+
+router.get('/users/:user_id', upload.array(), function(req, res, next){
+  database.query(
+    `SELECT user_table.user_id, location, phone, username, request_id, request_table.state
+    FROM request_table JOIN user_table
+    ON request_table.user_id = user_table.user_id
+    WHERE request_table.company_id = ${req.params.user_id} AND state = 1;`
+  )
+  .then((users, err) =>{
+    console.log(users);
+    if (err) throw err;
+    let usersList = users.map((user, i) =>{
+      user = new getCars(user);
+      user = Promise.resolve(user.cars())
+      return user;
+    })
+    return Promise.all(usersList).then((newList) => {return newList})
+  })
+  .then((newList, err) =>{
+    if (err) throw err;
+    res.send(newList);
+  })
+  .catch(err =>{
+    console.log(err);
+    res.sendStatus('400');
+  })
+});
 
 module.exports = router;
