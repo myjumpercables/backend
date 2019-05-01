@@ -118,6 +118,7 @@ function getCars(user){
     location: user.location,
     phone: user.phone,
     email: user.email,
+    state: user.state,
   }
 
   return {
@@ -152,7 +153,7 @@ router.post('/search', upload.array(), function(req, res, next){
 })
 
 router.get('/users/:user_id', upload.array(), function(req, res, next){
-  database.query(
+  database.query(z
     `SELECT user_table.user_id, location, phone, username, request_id, request_table.state
     FROM request_table JOIN user_table
     ON request_table.user_id = user_table.user_id
