@@ -49,6 +49,23 @@ router.get('/getRequests/:user_id', upload.array(), function(req, res, next){
   })
 });
 
+router.get('/companies/:user_id', upload.array(), function(req, res, next){
+  database.query(
+    `SELECT company_id AS companyId, username AS companyName, request_id FROM request_table JOIN user_table
+     ON request_table.company_id = user_table.user_id
+     WHERE request_table.user_id = ${req.params.user_id} AND state = 1;`
+  )
+  .then((data, err) =>{
+    if (err) throw err;
+    console.log(data);
+    res.send(data);
+  })
+  .catch(err =>{
+    console.log(err);
+    res.status(500).send();
+  })
+});
+
 router.post('/update/:request_id', upload.array(), function(req, res, next){
   database.query(
     `UPDATE request_table
