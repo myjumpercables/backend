@@ -9,8 +9,8 @@ var database = new Database();
 function getRepairs(service) {
   async function Repairs() {
     return database.query(
-    `SELECT repair_id, cost, date 
-    FROM repair_table 
+    `SELECT repair_id, repair_type, repair_desc, cost, date 
+    FROM repair_table
     WHERE service_id = '${service.service_id}';`
     )
     .then(repairRows =>{
