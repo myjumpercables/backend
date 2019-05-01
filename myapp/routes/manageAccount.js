@@ -28,6 +28,10 @@ router.post('/:user_id', upload.array(), function(req, res, next) {
         SET
           username = ${req.body.username},
           password = ${req.body.password},
+          phone = ${req.body.phone},
+          location = ${req.body.location},
+          email = ${req.body.email},
+          description = ${req.body.description},
         WHERE user_id = ${req.params.user_id};`
       )
       res.send(rows);
