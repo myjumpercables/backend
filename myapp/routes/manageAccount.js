@@ -14,6 +14,7 @@ var database = new Database();
 
 // Manage Account Router
 router.post('/:user_id', upload.array(), function(req, res, next) {
+  console.log(body);
   database.query(
     `SELECT * FROM user_table WHERE user_id = '${req.params.user_id}';`
   ).then((rows, err) => {
