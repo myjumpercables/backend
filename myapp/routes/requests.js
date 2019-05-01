@@ -86,7 +86,7 @@ router.post('/update/:request_id', upload.array(), function(req, res, next){
 router.post('/delete/:request_id', upload.array(), function(req, res, next){
   database.query(
     `DELETE FROM request_table
-     WHERE request_id = ${request_id}
+     WHERE request_id = ${req.params.request_id}
      `
   )
   .then((resp, err)=>{
