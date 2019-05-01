@@ -16,7 +16,10 @@ var database = new Database();
 router.post('/:user_id', upload.array(), function(req, res, next) {
   console.log(req.body);
   database.query(
-    `SELECT * FROM user_table WHERE user_id = '${req.params.user_id}';`
+    `SELECT * 
+    FROM user_table 
+    WHERE user_id = '${req.params.user_id}
+    AND password ='${req.body.password}';`
   ).then((rows, err) => {
     if (err) throw err;
     if(rows.length == 0){
@@ -32,7 +35,7 @@ router.post('/:user_id', upload.array(), function(req, res, next) {
           location = '${req.body.location}',
           email = '${req.body.email}',
           description = '${req.body.description}'
-        WHERE user_id = ${req.params.user_id} AND password = ${req.body.password};`
+        WHERE user_id = ${req.params.user_id};`
       ).then((resp,err)=>{
         if(err) throw err;
         res.send(rows);
