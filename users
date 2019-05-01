@@ -5,6 +5,6 @@ CREATE TABLE user_table (
   type varchar(25),
   password varchar(25),
   location varchar(25),
-  phone int(10),
+  phone int(11),
   PRIMARY KEY(user_id)
 );
