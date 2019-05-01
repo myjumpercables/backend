@@ -1,18 +1,27 @@
 var express = require('express');
 var router = express.Router();
-// var mysql = require('mysql')
-// var connection = mysql.createConnection({
-//   host: '35.232.83.9',
-//   user: 'root',
-//   password: 'dblab123',
-//   database: 'maintTracker'
-// })
+var Database = require('../database.js')
+var multer = require('multer');
+var upload = multer();
 
+var database = new Database();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/details/:id', upload.array(), function(req, res, next) {
   //connection.connect()
-  res.send('respond with a resource');
+  database.query(
+    `SELECT username, email, phone, location, description
+    FROM user_table
+    WHERE user_id = ${req.params.id}`
+  )
+  .then((rows, err) =>{
+    if (err) throw err;
+    res.send(rows[0]);
+  })
+  .catch(err =>{
+    console.log(err);
+    res.sendStatus(500);
+  })
 });
 
 module.exports = router;
